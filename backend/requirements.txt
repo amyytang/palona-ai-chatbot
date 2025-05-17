@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-dotenv
+pillow
+transformers
+torch
+httpx
+requests
