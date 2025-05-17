@@ -74,7 +74,9 @@ Get your own keys and put them in chatbot/backend/.env
 ```bash
 HF_TOKEN= [INSERT YOUR TOKEN HERE]
 SERPAPI_KEY= [INSERT YOUR SERPAPI_KEY HERE]
-
+```
+Then run,
+```bash
 uvicorn main:app --reload
 ```
 ### 3. Set up the Frontend
