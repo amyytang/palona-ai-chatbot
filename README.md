@@ -148,17 +148,9 @@ Under Armour Men's Charged Assert 10 Running Shoes — $54.95 [<a href="https://
   I chose to use React because React is one of the most popular front-end technologies, is easy to learn and has effective built in libraries. My goal is to set up the front end easily, so I can focus on the AI search features. I chose to use FastAPI because it is an easy-to-use modern web framework that lets me build up the backend efficiently.
 
 
-## 🚧 Known Issues
-
-- BLIP captioning sometimes produces vague results for low-quality images
-- Image search does not yet support filtering (e.g. by price or category)
-
 ## 🔮 Future Improvements
 
-- Add product filters (price range, rating, source)
-- Improve fallback handling for LLM errors
-- Add support for multiple product image uploads
-- Cache product search results for repeated queries
+- Can add filtering for image search (e.g. by price or category)
 
 ## 📌 License
 
