@@ -6,3 +6,4 @@ transformers
 torch
 httpx
 requests
+python-multipart

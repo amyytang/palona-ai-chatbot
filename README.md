@@ -70,7 +70,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 ```
-Get your own keys and put them in chatbot/backend/.env
+Get your own keys, create a .env file in backend, and insert your keys.
 ```bash
 HF_TOKEN= [INSERT YOUR TOKEN HERE]
 SERPAPI_KEY= [INSERT YOUR SERPAPI_KEY HERE]
@@ -91,6 +91,12 @@ npm install
 npm run dev
 
 ```
+## ⚠️ Node Version Requirement
+
+This project requires **Node.js v18 or later**.  
+If you get an "unsupported engine" or "unexpected reserved word" error: 
+Use NVM to manage Node.js versions: https://github.com/nvm-sh/nvm
+
 ## 🧠 API Endpoints
 
 | Endpoint            | Method | Description                           |
