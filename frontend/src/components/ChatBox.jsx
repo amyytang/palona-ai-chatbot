@@ -51,7 +51,7 @@ function ChatBox() {
 
       const intentData = await intentRes.json();
       const isProductQuery = intentData.is_product;
-
+      //const isProductQuery = false;
       if (isProductQuery) {
         const res = await fetch("http://localhost:8000/search-products", {
           method: "POST",
@@ -67,7 +67,7 @@ function ChatBox() {
               `${p.title} — ${p.price} [<a href="${p.link}" target="_blank" rel="noopener noreferrer">View Product</a>]`
           ).join("\n\n");
 
-          setMessages([...updatedMessages, { sender: 'bot', text: formatted, type: 'product' }]);
+          setMessages([...updatedMessages, { sender: 'bot', text: 'Here are the products I recommend: \n \n' + formatted, type: 'product' }]);
         } else {
           setMessages([...updatedMessages, { sender: 'bot', text: "Sorry, I couldn't find anything relevant.", type: "product" }]);
         }
@@ -103,7 +103,8 @@ function ChatBox() {
     const formData = new FormData();
     formData.append("file", file);
 
-    const updatedMessages = [...messages, { sender: 'user', text: '[Uploaded an image]' }];
+    const imageUrl = URL.createObjectURL(file);
+    const updatedMessages = [...messages, { sender: 'user', type: 'image', image: imageUrl }];
     setMessages(updatedMessages);
     setLoading(true);
 
@@ -136,6 +137,7 @@ function ChatBox() {
     } finally {
       setLoading(false);
     }
+    e.target.value = null;
   };
 
   return (
@@ -151,9 +153,11 @@ function ChatBox() {
               maxWidth: '80%',
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-word'
-            }}>
+            }}> 
               {msg.type === 'product' ? (
                 <span dangerouslySetInnerHTML={{ __html: msg.text }} />
+              ) : msg.type === 'image' ? (
+                <img src={msg.image} alt="Uploaded" style={{ maxWidth: '200px', borderRadius: '8px' }} />
               ) : (
                 <span>{msg.text}</span>
               )}
@@ -172,7 +176,7 @@ function ChatBox() {
           style={{ flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
         />
         <button onClick={handleSend} style={{ padding: '0.5rem 1rem' }}>Send</button>
-        <button onClick={() => fileInputRef.current.click()} style={{ padding: '0.5rem 1rem' }}>📷</button>
+        <button onClick={() => fileInputRef.current.click()} style={{ padding: '0.5rem 1rem' }}>Upload Image 📷</button>
         <input
           type="file"
           accept="image/*"

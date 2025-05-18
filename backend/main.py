@@ -6,10 +6,8 @@ from PIL import Image
 from io import BytesIO
 from transformers import BlipProcessor, BlipForConditionalGeneration
 import torch
-import uvicorn
 import os
 import requests
-
 
 # Load environment variables
 load_dotenv()
@@ -81,6 +79,7 @@ class RecommendRequest(BaseModel):
 @app.post("/search-products")
 async def search_products(request: RecommendRequest):
     query = urllib.parse.quote(request.message)
+
     api_key = os.getenv("SERPAPI_KEY")
 
     serp_url = f"https://serpapi.com/search.json?engine=google_shopping&q={query}&api_key={api_key}"
@@ -96,7 +95,7 @@ async def search_products(request: RecommendRequest):
                 "link": r.get("product_link"),
                 "source": r.get("source")
             }
-            for r in results[:3]  # top 3
+            for r in results[:3]  # top n results
         ]
         return {"results": top_results}
 
