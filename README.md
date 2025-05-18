@@ -75,6 +75,11 @@ Get your own keys and put them in chatbot/backend/.env
 HF_TOKEN= [INSERT YOUR TOKEN HERE]
 SERPAPI_KEY= [INSERT YOUR SERPAPI_KEY HERE]
 ```
+After making a Hugging Face account at https://huggingface.co, you can access your tokens at https://huggingface.co/settings/tokens
+Click +Create new token in the upper right-hand corner to create a new token.
+
+After making a SerpApi acount at serpapi.com, go to Your Account and copy the api key under Your Private API Key.
+
 Then run,
 ```bash
 uvicorn main:app --reload
